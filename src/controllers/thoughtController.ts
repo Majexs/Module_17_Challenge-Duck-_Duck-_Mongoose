@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { User, Thought } from '../models/index.js';
+import { Thought } from '../models/index.js';
 
 // Get all Thoughts
 export const getAllThoughts = async (_req: Request, res: Response ) => {
@@ -14,7 +14,7 @@ export const getAllThoughts = async (_req: Request, res: Response ) => {
 // Get a single Thought
 export const getThoughtById = async (_req: Request, res: Response) => {
     try {
-        const thought = await Thought.findOne({_id: req.params.thoughtId })
+        const thought = await Thought.findOne({_id: _req.params.thoughtId })
             .select('-__v');
 
         if (!thought) {

@@ -1,8 +1,6 @@
 import { Request, Response } from 'express';
 import { User, Thought } from '../models/index.js';
 
-// Does friendCount function go here???
-
 // Get all Users
 export const getAllUsers = async (_req: Request, res: Response ) => {
     try {
@@ -16,7 +14,7 @@ export const getAllUsers = async (_req: Request, res: Response ) => {
 // Get a single User
 export const getUserById = async (_req: Request, res: Response) => {
     try {
-        const user = await User.findOne({_id: req.params.userId })
+        const user = await User.findOne({_id: _req.params.userId })
             .select('-__v');
 
         if (!user) {
