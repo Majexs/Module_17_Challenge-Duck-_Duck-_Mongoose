@@ -99,6 +99,26 @@ export const addFriend = async (req: Request, res: Response) => {
     }
 }
 
+// Get all Friends of User
+export const getFriends = async (req: Request, res: Response) => {
+    try {
+        const user = await User.findOne({_id: req.params.userId })
+        .select('-__v');
+
+        if (!user) {
+            return res.status(404).json({ message: 'No user with that ID' });
+        }
+        
+        const friendList = await User.find();
+
+        res.json(friendList);
+        return;
+    } catch (err) {
+        res.status(500).json(err);
+        return;
+    }
+}
+
 // Delete a Friend
 export const deleteFriend = async (req: Request, res: Response) => {
     try {

@@ -68,7 +68,7 @@ export const deleteThought = async (req: Request, res: Response) => {
         if (!thought) {
             return res.status(404).json({ message: 'No thought with that ID '});
         }
-
+        
         res.json({ message: 'Thought deleted!' })
         return;
     } catch (err) {

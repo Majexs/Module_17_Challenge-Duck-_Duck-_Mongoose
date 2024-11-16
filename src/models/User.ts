@@ -3,8 +3,8 @@ import { Schema, model, type Document, ObjectId } from 'mongoose';
 interface IUser extends Document {
     username: string;
     email: string;
-    thoughts: ObjectId[],
-    friends: ObjectId[]
+    thoughts: ObjectId[];
+    friends: Schema.Types.ObjectId[]
 }
 
 const userSchema = new Schema<IUser>({
