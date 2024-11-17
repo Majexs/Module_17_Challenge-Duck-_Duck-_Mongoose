@@ -72,6 +72,5 @@ thoughtSchema
         return this.reactions.length;
     })
 
-const Thought = model('Thought', thoughtSchema);
-
-export default Thought;
+export const Thought = model('Thought', thoughtSchema);
+export const Reaction = model('Reaction', reactionSchema);

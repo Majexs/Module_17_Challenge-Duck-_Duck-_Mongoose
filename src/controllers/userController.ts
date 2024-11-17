@@ -109,10 +109,11 @@ export const getFriends = async (req: Request, res: Response) => {
             return res.status(404).json({ message: 'No user with that ID' });
         }
         
-        const friendList = await User.find();
+        const friendList = await User.find(user.friends);
 
         res.json(friendList);
         return;
+
     } catch (err) {
         res.status(500).json(err);
         return;
