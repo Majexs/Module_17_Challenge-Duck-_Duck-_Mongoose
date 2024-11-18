@@ -78,6 +78,8 @@ export const deleteUser = async (req: Request, res: Response) => {
     }
 }
 
+// NEED TO REWORK
+
 // Add a Friend
 export const addFriend = async (req: Request, res: Response) => {
     try {
@@ -99,11 +101,12 @@ export const addFriend = async (req: Request, res: Response) => {
     }
 }
 
+// NEED TO REWORK
+
 // Get all Friends of User
 export const getFriends = async (req: Request, res: Response) => {
     try {
-        const user = await User.findOne({_id: req.params.userId })
-        .select('-__v');
+        const user = await User.findOne({_id: req.params.userId });
 
         if (!user) {
             return res.status(404).json({ message: 'No user with that ID' });
@@ -120,12 +123,14 @@ export const getFriends = async (req: Request, res: Response) => {
     }
 }
 
+// NEED TO REWORK
+
 // Delete a Friend
 export const deleteFriend = async (req: Request, res: Response) => {
     try {
         const user = await User.findOneAndUpdate(
             { _id: req.params.userId },
-            { $pull: { friends: { friendId: req.params.friendId } } },
+            { $pull: { friends: req.body.friendId } },
             { runValidators: true, new: true }
         );
 

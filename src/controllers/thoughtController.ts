@@ -84,7 +84,6 @@ export const deleteThought = async (req: Request, res: Response) => {
         await Reaction.deleteMany({ _id: { $in: thought.reactions } });
         res.json({ message: 'Thoughts and associated reactions deleted!' })
         return;
-        
     } catch (err) {
         res.status(500).json(err);
         return;
