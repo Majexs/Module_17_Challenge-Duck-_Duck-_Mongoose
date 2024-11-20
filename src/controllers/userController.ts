@@ -78,14 +78,12 @@ export const deleteUser = async (req: Request, res: Response) => {
     }
 }
 
-// NEED TO REWORK
-
 // Add a Friend
 export const addFriend = async (req: Request, res: Response) => {
     try {
         const user = await User.findOneAndUpdate(
             { _id: req.params.userId },
-            { $addToSet: { friends: req.body } },
+            { $addToSet: { friends: req.params.friendId } },
             { runValidators: true, new: true }
         );
 
@@ -123,14 +121,12 @@ export const getFriends = async (req: Request, res: Response) => {
     }
 }
 
-// NEED TO REWORK
-
 // Delete a Friend
 export const deleteFriend = async (req: Request, res: Response) => {
     try {
         const user = await User.findOneAndUpdate(
             { _id: req.params.userId },
-            { $pull: { friends: req.body.friendId } },
+            { $pull: { friends: req.params.friendId } },
             { runValidators: true, new: true }
         );
 
