@@ -99,8 +99,6 @@ export const addFriend = async (req: Request, res: Response) => {
     }
 }
 
-// NEED TO REWORK
-
 // Get all Friends of User
 export const getFriends = async (req: Request, res: Response) => {
     try {
@@ -110,7 +108,7 @@ export const getFriends = async (req: Request, res: Response) => {
             return res.status(404).json({ message: 'No user with that ID' });
         }
         
-        const friendList = await User.find(user.friends);
+        const friendList = user.friends;
 
         res.json(friendList);
         return;
